@@ -1,8 +1,20 @@
 // https://on.cypress.io/api
 
-describe('My First Test', () => {
-  it('visits the app root url', () => {
+describe('Renders Website', () => {
+
+  it('Visits Website', () => {
     cy.visit('/')
-    cy.contains('h1', 'You did it!')
+  })
+
+  it('Checks Status', () => {
+    cy.request('http://localhost:5173/').then((response) => {
+      expect(response.status).to.eq(200)
+    })
+  })
+
+  it('Tests Navigation', () => {
+    cy.visit('/')
+    cy.get('a').contains('About').click()
+    cy.url().should('include', '/about')
   })
 })
