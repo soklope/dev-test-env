@@ -11,3 +11,13 @@ jobs:
         run: npm install
       - name: 'Execute Lint'
         run: npm run lint
+  E2E-Test: 
+    runs-on: ubunto-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 'Install Packages'
+        run: npm install
+      - uses: cypress-io/github-actions@v6
+        with:
+          start: npm run dev
+          
